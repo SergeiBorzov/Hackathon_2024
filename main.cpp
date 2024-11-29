@@ -10,9 +10,46 @@
 #include "SFML/Window/Event.hpp"
 #include "SFML/Graphics/Font.hpp"
 #include "SFML/Graphics/Text.hpp"
+#include <string>
 
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
+
+static std::string actualText = R"(
+A long time from now, in the year 2500….
+
+Volvo Wars
+Episode EX
+The Autonomous Dilemma
+
+The year is 2500. Decades after parting
+ways with their Geely overlords, 
+Volvo remains steadfast in its quest to master
+autonomous driving. In a world dominated
+by sentient vehicles and hyper-intelligent
+systems, after decades of tinkering and countless
+prototype crashes, the iconic automaker faces
+a daunting challenge - a roadblock, literally.
+
+Now, Volvo's engineers are out of coffee,
+out of time, and dangerously close to asking
+Tesla for help. Desperate to save their reputation
+(and their sanity), they've called on YOU,
+to pretend you're the autonomous system
+they couldn't quite finish. Volvo's biggest
+stakeholder meeting looms on the horizon - 
+a gathering of alien investors from the Andromeda
+Galaxy, who are very particular about their ROI.
+
+Your mission: fake it 'till you make you make it.
+Steer Volvo's vehicle's through chaotic simulations,
+avoid embarrassing explosions, and convince that Volvo
+is the future of driving - even if it's mostly held
+with duct tape and hope.
+
+The simulation starts now... Good luck!
+
+)";
 
 void arrowMovement(sf::Transformable& entity) {
     using sf::Keyboard;
@@ -41,7 +78,7 @@ static void InitIntro()
     }
 
     starWarsText.setFont(starWarsFont);
-    starWarsText.setString("Banana\nBanana\nBanana\nBanana");
+    starWarsText.setString(actualText);
     starWarsText.setCharacterSize(30); // Initial font size
     starWarsText.setFillColor(sf::Color::Yellow);
 
