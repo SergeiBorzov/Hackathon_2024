@@ -60,10 +60,10 @@ void arrowMovement(sf::Transformable& entity) {
         entity.move(0, 1);
     }
     if(Keyboard::isKeyPressed(Keyboard::Left)) {
-        entity.move(-30, 0);
+        entity.move(-1, 0);
     }
     if(Keyboard::isKeyPressed(Keyboard::Right)) {
-        entity.move(30, 0);
+        entity.move(1, 0);
     }
 }
 static int state = 1;
@@ -96,11 +96,6 @@ static void UpdateIntro(float dt)
 }
 
 // Buffer some assets; a texture for sprites, and a soundbuffer for sounds
-
-
-
-
-
 // Create a sprite using the texture, and put it in the middle of the window to start.
 
 // print green position
@@ -108,6 +103,11 @@ static void UpdateIntro(float dt)
 sf::Sprite red;
 sf::Sprite darkGreen;
 sf::Sprite green;
+
+// sf::Texture greenTex;
+// sf::Texture redTex;
+// sf::Texture darkGreenTex;
+// sf::SoundBuffer boingSound;
 
 // sf::Sprite darkGreen(darkGreenTex);
 
@@ -121,22 +121,22 @@ static void Game()
 {
     // Game logic here
     // Move the sprite around.
-    // arrowMovement(green);
-    // red.move(0, 1);
-    // darkGreen.move(0, 10);
-    // if (red.getPosition().y > 1024) {
-    //     red.setPosition(250, -1026);
-    // }
-    // if (darkGreen.getPosition().y > 1024) {
-    //     darkGreen.setPosition(250, -1026);
-    // }
+    arrowMovement(green);
+    red.move(0, 0.1);
+    darkGreen.move(0, 0.1);
+    if (red.getPosition().y > 1024) {
+        red.setPosition(0, -1026);
+    }
+    if (darkGreen.getPosition().y > 1024) {
+        darkGreen.setPosition(0, -1026);
+    }
 }
 
 int main(int argc, char** argv){
     sf::Texture greenTex;
     sf::Texture redTex;
     sf::Texture darkGreenTex;
-    sf::SoundBuffer boingSound;
+    // sf::SoundBuffer boingSound;
     // Create a window with a framerate limit. It's possible to get a fullscreen mode through sf::VideoMode::getFullscreenModes().
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Hackathon game");
     window.setFramerateLimit(60);
@@ -149,9 +149,9 @@ int main(int argc, char** argv){
     green.setTexture(greenTex);
 
 
-    // green.setPosition(window.getView().getCenter().x, 750);
-    // darkGreen.setPosition(250, -1026);
-    // red.setPosition(250, 0);
+    green.setPosition(window.getView().getCenter().x, 250);
+    darkGreen.setPosition(0, -1026);
+    red.setPosition(0, 0);
 
 
 
@@ -162,24 +162,30 @@ int main(int argc, char** argv){
     // Main loop, run as long as the window is open. The framerate limit makes sure it doesn't run too fast.
     while(window.isOpen()) {
         sf::Time elapsed = clock.restart();
-        std::cout<<"hej"<<std::endl;
+        // std::cout<<"hej"<<std::endl;
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
 
         // std::cout<<green.getPosition().x<<std::endl;
+        window.clear();
         if (state == 0) {
             UpdateIntro(elapsed.asSeconds());
-
+            window.draw(starWarsText);
         }
         else if (state == 1) {
             std::cout<<"hej"<<std::endl;
             Game();
+            window.draw(red);
+            window.draw(darkGreen);
+            window.draw(green);
         }
 
         // Clear the window, draw new things, then display the window. Everything you draw to the window should be between clear() and display().
-        window.clear();
-        window.draw(starWarsText);
-        // window.draw(red);
-        // window.draw(darkGreen);
-        // window.draw(green);
+
         window.display();
     }
     return 0;
