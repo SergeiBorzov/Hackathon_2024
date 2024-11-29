@@ -6,7 +6,7 @@
 #include "SFML/Window/Keyboard.hpp"
 #include "SFML/Window/VideoMode.hpp"
 #include "SFML/Graphics/RenderWindow.hpp"
-
+#include "SFML/Window/Event.hpp"
 
 void arrowMovement(sf::Transformable& entity) {
     using sf::Keyboard;
@@ -38,17 +38,23 @@ int main(int argc, char** argv){
     // Create a sprite using the texture, and put it in the middle of the window to start.
     sf::Sprite green(greenTex);
     green.setPosition(window.getView().getCenter());
-    
+
     // Create a sound effect using the soundbuffer.
     sf::Sound boing(boingSound);
-    
-    
+
+
     // Main loop, run as long as the window is open. The framerate limit makes sure it doesn't run too fast.
     while(window.isOpen()) {
-        // Either check keyboard (similar for mouse) status directly like this, or use events: https://www.sfml-dev.org/documentation/2.6.2/classsf_1_1Event.php 
+        // Either check keyboard (similar for mouse) status directly like this, or use events: https://www.sfml-dev.org/documentation/2.6.2/classsf_1_1Event.php
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
             // Escape was pressed, so close the window.
             window.close();
+        }
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
         }
         // Move the sprite around.
         arrowMovement(green);
