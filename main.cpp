@@ -12,43 +12,74 @@
 #include "SFML/Graphics/Text.hpp"
 #include <string>
 
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 600
+#define WINDOW_WIDTH 1800
+#define WINDOW_HEIGHT 1350
 
 static std::string actualText = R"(
-A long time from now, in the year 2500….
+A long time from now, in the year 2500...
 
-Volvo Wars
-Episode EX
+
+
+
+
+volvo wars
+Episode ex
 The Autonomous Dilemma
 
+
+
+
+
 The year is 2500. Decades after parting
+
 ways with their Geely overlords, 
-Volvo remains steadfast in its quest to master
-autonomous driving. In a world dominated
+
+volvo remains steadfast in its quest to master
+
+autonomous driving. in a world dominated
+
 by sentient vehicles and hyper-intelligent
+
 systems, after decades of tinkering and countless
+
 prototype crashes, the iconic automaker faces
+
 a daunting challenge - a roadblock, literally.
 
-Now, Volvo's engineers are out of coffee,
-out of time, and dangerously close to asking
-Tesla for help. Desperate to save their reputation
-(and their sanity), they've called on YOU,
-to pretend you're the autonomous system
-they couldn't quite finish. Volvo's biggest
-stakeholder meeting looms on the horizon - 
-a gathering of alien investors from the Andromeda
-Galaxy, who are very particular about their ROI.
 
-Your mission: fake it 'till you make you make it.
-Steer Volvo's vehicle's through chaotic simulations,
-avoid embarrassing explosions, and convince that Volvo
+
+Now, volvo's engineers are out of coffee,
+
+out of time, and dangerously close to asking
+
+Tesla for help. Desperate to save their reputation
+
+(and their sanity), they've called on you,
+
+to pretend you're the autonomous system
+
+they couldn't quite finish. volvo's biggest
+
+stakeholder meeting looms on the horizon - 
+
+a gathering of alien investors from the Andromeda
+
+Galaxy, who are very particular about their roi.
+
+
+Your mission: fake it 'till you make it.
+
+Steer volvo vehicle's through chaotic simulations,
+
+avoid embarrassing explosions, and convince that volvo
+
 is the future of driving - even if it's mostly held
+
 with duct tape and hope.
 
-The simulation starts now... Good luck!
 
+
+The simulation starts now... Good luck!
 )";
 
 void arrowMovement(sf::Transformable& entity) {
@@ -79,13 +110,13 @@ static void InitIntro()
 
     starWarsText.setFont(starWarsFont);
     starWarsText.setString(actualText);
-    starWarsText.setCharacterSize(30); // Initial font size
+    starWarsText.setCharacterSize(45); // Initial font size
     starWarsText.setFillColor(sf::Color::Yellow);
 
     // Center the text horizontally
     sf::FloatRect textBounds = starWarsText.getLocalBounds();
-    starWarsText.setOrigin(textBounds.width / 2, textBounds.height / 2);
-    starWarsText.setPosition(WINDOW_WIDTH/2, WINDOW_HEIGHT);
+    starWarsText.setOrigin(textBounds.width / 2, 0);
+    starWarsText.setPosition(WINDOW_WIDTH/2, WINDOW_HEIGHT/1.5);
 }
 
 static void UpdateIntro(float dt)
